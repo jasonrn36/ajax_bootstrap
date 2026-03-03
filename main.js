@@ -29,11 +29,8 @@
                 const endereco = `${logradouro}, ${bairro} - ${cidade} - ${estado}`;
                 $('#endereco').val(endereco);
 
-                setTimeout(function(){
                     $(botao).find('i').removeClass('d-none');
                     $(botao).find('span').addClass('d-none');
-                },1500);
-
             })
     })
 })
