@@ -1,7 +1,7 @@
 /* document.addEventListener("DOMContentLoaded",function(){
     document.getElementById("btn-buscar-cep").addEventListener('click',function(){
         const xhttp = new XMLHttpRequest(); //Isso é uma xhttpRequisição
-        const cep = document.getElementById('Cep').value; //este cep é o input "cep no formulário
+        const cep = document.getElementById('cep').value; //este cep é o input "cep no formulário
         const endpoint = `https://viacep.com.br/ws/${cep}/json`; // ponto final é onde irá buscar o cep
 
         xhttp.open("GET", endpoint, true); // Aqui temos a chamada para clicar pegar o número do cep
@@ -12,16 +12,28 @@
 
     $(document).ready(function(){
         $("#btn-buscar-cep").click(function(){ //#btn-buscar-cep com # porque ele é um ID
-            const cep = $("#Cep").val();
+            const cep = $("#cep").val();
             const endpoint = `https://viacep.com.br/ws/${cep}/json`;
+            const botao = $(this);
+
+
+            $(botao).find('i').addClass('d-none');
+            $(botao).find('span').removeClass('d-none');
 
             $.ajax(endpoint).done(function(resposta){
-                const logradouro = resposta.logradouro;
+                const rua = resposta.logradouro; // o lado direito é que vem do servidor esse resposta.logradouro
                 const bairro = resposta.bairro;
-                const cidade = resposta.cidade;
-                const estado = resposta.estado;
-                const endereco = `${lograduouro}, ${bairro} - ${cidade} - ${estado}`;
+                const cidade = resposta.localidade;
+                const estado = resposta.uf;
+                const endereco = `${rua}, ${bairro} - ${cidade} - ${estado}`;
                 $('#endereco').val(endereco);
+
+                setTimeout(function(){
+            $(botao).find('i').removeClass('d-none');
+            $(botao).find('span').addClass('d-none');
+                }, 1000);
+
+
             })
     })
 })
