@@ -18,6 +18,8 @@
             const endpoint = `https://viacep.com.br/ws/${cep}/json`;
             const botao = $(this);
 
+                $(botao).find('i').addClass('d-none');
+                $(botao).find('span').removeClass('d-none');
 
             $.ajax(endpoint).done(function(resposta){
                 const logradouro = resposta.logradouro;
@@ -27,23 +29,15 @@
                 const endereco = `${logradouro}, ${bairro} - ${cidade} - ${estado}`;
                 $('#endereco').val(endereco);
 
-                setTimeout(function(){
-                    console.log("Timeout executado");
-                    
-                $(botao).find('i').addClass('d-none');
-                $(botao).find('span').removeClass('d-none');
+
 
                     $(botao).find('i').removeClass('d-none');
                     $(botao).find('span').addClass('d-none');
-                }, 4000);
 
+                    
 
             })
 
-        .fail(function(){
-            alert("Erro ao buscar CEP");
-        });
-
-    })
+        })
     
 })
