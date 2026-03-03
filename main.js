@@ -11,17 +11,29 @@
    // https://viacep.com.br/ws/0123456789/json
 
     $(document).ready(function(){
+        $('#Cep').mask('00000-000');
+
         $("#btn-buscar-cep").click(function(){ //#btn-buscar-cep com # porque ele é um ID
             const cep = $("#Cep").val();
             const endpoint = `https://viacep.com.br/ws/${cep}/json`;
+            const botao = $(this);
+
+                $(botao).find('i').addClass('d-none');
+                $(botao).find('i').removeClass('d-none');
 
             $.ajax(endpoint).done(function(resposta){
                 const logradouro = resposta.logradouro;
                 const bairro = resposta.bairro;
                 const cidade = resposta.cidade;
                 const estado = resposta.estado;
-                const endereco = `${lograduouro}, ${bairro} - ${cidade} - ${estado}`;
+                const endereco = `${logradouro}, ${bairro} - ${cidade} - ${estado}`;
                 $('#endereco').val(endereco);
+
+                setTimeout(function(){
+                    $(botao).find('i').removeClass('d-none');
+                    $(botao).find('i').addClass('d-none');
+                }, 1000);
+
             })
     })
 })
