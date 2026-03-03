@@ -24,8 +24,8 @@
             $.ajax(endpoint).done(function(resposta){
                 const logradouro = resposta.logradouro;
                 const bairro = resposta.bairro;
-                const cidade = resposta.cidade;
-                const estado = resposta.estado;
+                const cidade = resposta.localicade;
+                const estado = resposta.uf;
                 const endereco = `${logradouro}, ${bairro} - ${cidade} - ${estado}`;
                 $('#endereco').val(endereco);
 
