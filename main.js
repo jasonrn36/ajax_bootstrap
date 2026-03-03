@@ -19,7 +19,7 @@
             const botao = $(this);
 
                 $(botao).find('i').addClass('d-none');
-                $(botao).find('i').removeClass('d-none');
+                $(botao).find('span').removeClass('d-none');
 
             $.ajax(endpoint).done(function(resposta){
                 const logradouro = resposta.logradouro;
@@ -31,8 +31,8 @@
 
                 setTimeout(function(){
                     $(botao).find('i').removeClass('d-none');
-                    $(botao).find('i').addClass('d-none');
-                }, 1000);
+                    $(botao).find('span').addClass('d-none');
+                },1500);
 
             })
     })
